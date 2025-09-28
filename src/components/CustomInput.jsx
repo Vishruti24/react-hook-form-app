@@ -2,10 +2,9 @@ import { Controller } from "react-hook-form";
 
 const CustomInput = ({ control, name, label, rules, type = "text", placeholder }) => {
   return (
-    <div className="mb-3">
-      <label className="block font-medium mb-1">{label}</label>
+    <div className="mb-3 position-relative">
+      <label className="form-label text-white">{label}</label>
 
-      {/* Controller connects custom input to React Hook Form */}
       <Controller
         name={name}
         control={control}
@@ -16,12 +15,15 @@ const CustomInput = ({ control, name, label, rules, type = "text", placeholder }
               {...field}
               type={type}
               placeholder={placeholder}
-              className={`border rounded p-2 w-full ${
-                fieldState.error ? "border-red-500" : "border-gray-300"
+              className={`form-control bg-dark text-white border-white transition-all ${
+                fieldState.error ? "border-danger" : ""
               }`}
+              style={{
+                transition: "all 0.3s ease",
+              }}
             />
             {fieldState.error && (
-              <p className="text-red-500 text-sm mt-1">{fieldState.error.message}</p>
+              <div className="form-text text-danger">{fieldState.error.message}</div>
             )}
           </>
         )}
